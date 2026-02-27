@@ -1,135 +1,84 @@
-# Langchain\Langgraph-Resume-Optimizer
+# 🚀 ResumeRefiner
 
+AI-Powered Resume Optimization Tool that analyzes resumes against job descriptions and improves ATS (Applicant Tracking System) compatibility.
 
-📄 **Resume Optimizer** powered by LangChain & LangGraph with Streamlit UI
+---
 
-***
+## 📌 Overview
 
-## Overview
+ResumeRefiner helps candidates optimize their resumes by:
 
-This application automates resume optimization by analyzing uploaded resumes against job descriptions and generating tailored improvement suggestions powered by large language models and vector retrieval techniques.
+- 📊 Calculating ATS Match Score
+- 🔍 Extracting and comparing keywords
+- 🧠 Generating intelligent suggestions
+- ✍️ Rewriting resume content
+- 🎯 Highlighting improvements clearly
 
-- **Resume analysis**: Extract key skills, experience, education, projects, career progression from resumes.
-- **Optimization suggestions**: Provide actionable improvement advice tailored to the job description.
-- **Interactive Streamlit UI**: Upload PDF resumes, enter job info, run optimization, view structured results.
+This project demonstrates practical implementation of LLM workflows using LangChain-style graph orchestration.
 
-***
+---
 
-## Features
+## ✨ Features
 
-- Resume ingestion & embedding with FAISS vector store
-- Retrieval augmented generation (RAG) using LangChain + LangGraph
-- Custom output parsing with Pydantic schemas for structured JSON
-- Clean Streamlit user interface with sidebar controls & summaries
-- Resume re-analysis and iterative refinement
+### 1️⃣ ATS Score Dashboard
+- Overall Match Score
+- Visual Score Breakdown
+- Keyword comparison chart
 
-***
+### 2️⃣ Keyword Analysis
+- Extracts job description keywords
+- Compares with resume keywords
+- Displays missing keywords
 
-## Requirements
+### 3️⃣ Smart Suggestions
+- Key findings
+- Specific improvements
+- Actionable items
 
-- Python 3.10+
-- Streamlit 1.47.1+
-- langchain-together, langchain-core, langchain-community
-- faiss-cpu
-- pydantic v2.x
-- dotenv
-- Other utilities: shutil, tempfile, regex
+### 4️⃣ Resume Rewriting
+- AI-generated optimized summary
+- Tailored content based on job role
+- Improved keyword alignment
 
-***
+### 5️⃣ Highlighted Changes View
+- Clearly shows differences between original and optimized resume
 
-## Setup & Installation
+---
 
-1. Clone the repo:
+## 🛠️ Tech Stack
 
-```bash
-git clone <your_repo_url>
-cd langgraph-resume-optimizer
-```
+- Python
+- Streamlit (Frontend UI)
+- LangChain-style Graph Workflow
+- LLM Integration
+- Matplotlib / Visualization
+- JSON structured output
 
-2. Create and activate a Python virtual environment:
+---
 
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-```
+## 🧠 How It Works
 
-3. Install Python dependencies:
+1. Upload Resume (PDF)
+2. Enter Job Title & Job Description
+3. System:
+   - Extracts text
+   - Generates keyword analysis
+   - Calculates ATS score
+   - Produces structured improvement suggestions
+4. Displays:
+   - Dashboard
+   - Visual Charts
+   - JSON Output
+   - Rewritten Resume
 
-```bash
-pip install -r requirements.txt
-```
+---
 
-4. Create a `.env` file with your API keys (e.g., LLM provider keys).
+## 📂 Project Structure
+app.py # Main application
+graph.py # Workflow graph logic
+nodes.py # Processing nodes
+utils.py # Helper functions
+test_nodes.py # Unit testing
+requirements.txt # Dependencies
 
-5. Run the app:
-
-```bash
-streamlit run app.py
-```
-
-6. In the browser, upload your resume (PDF), input job title and description, select optimization type, and run.
-
-***
-
-## File Structure
-
-```
-/
-├── app.py                 # Main Streamlit UI and orchestration logic
-├── nodes.py               # LangGraph node implementations for embedding, analysis, suggestions
-├── graph.py               # LangGraph graph creation and node linkage
-├── utils.py               # Utility functions: PDF loading, display, prompt templates
-├── requirements.txt       # Python dependencies
-├── .env                   # Environment variables (API keys)
-└── README.md              # This documentation
-```
-
-***
-
-## requirements.txt
-
-```text
-streamlit==1.47.1
-langchain-together
-langchain-core
-langchain-community
-faiss-cpu
-pydantic>=2.0.0
-python-dotenv
-```
-
-***
-
-## Notes
-
-- Make sure your vector store (FAISS) and LLM API keys are properly configured.
-- The app uses Pydantic v2's `.model_dump()` for safe JSON serialization.
-- Prompts include strict format instructions to ensure JSON output without extraneous text.
-- Output parsing strips internal `<think>...</think>` tags to avoid JSON parse errors.
-- Re-analyze triggers Streamlit `st.rerun()` for UI refresh (Streamlit 1.47 compatibility).
-- Adjust model names and temperature in `.env` or sidebar to experiment with different LLMs.
-
-***
-
-## Contributing
-
-Contributions, bug reports, or feature requests are welcome! Please open an issue or submit a pull request.
-
-***
-
-## License
-
-MIT License.
-
-
-https://github.com/user-attachments/assets/e39ab94c-d1d5-4abb-80e2-ba369ef2d900
-
-
-
-
-
-
-
-
-Uploading resume-optimizer.mp4…
 
