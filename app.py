@@ -26,8 +26,151 @@ def main():
         layout="wide"
     )
 
+# ===== PREMIUM DARK UI POLISH =====
+    st.markdown("""
+<style>
+
+/* Remove Top White Bar */
+header {visibility: hidden;}
+.block-container {padding-top: 1.5rem;}
+
+/* Main Background */
+.stApp {
+    background: linear-gradient(135deg, #0b0f1c, #0f172a);
+    color: #e5e7eb;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #0b1a2a, #0f1117);
+}
+                /* Upload Resume text color */
+section[data-testid="stSidebar"] h3 {
+     color: #94a3b8 !important;
+    font-weight: 600;
+}
+
+/* ===== MAIN TITLE (Resume Refiner) ===== */
+h1 {
+    font-size: 42px !important;
+    font-weight: 700 !important;
+    background: linear-gradient(90deg, #0066ff, #00f5d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+}
+
+/* Sub text */
+.stCaption {
+    color: #9ca3af !important;
+}
+
+/* Section Labels (Job Title, Job Description etc.) */
+label {
+    color: #cbd5e1 !important;
+    font-weight: 500;
+}
+
+/* Input Containers Darker */
+div[data-testid="stTextInput"],
+div[data-testid="stTextArea"],
+div[data-testid="stFileUploader"] {
+    background-color: #111827 !important;
+    padding: 15px !important;
+    border-radius: 14px !important;
+    border: 1px solid #1f2937 !important;
+    margin-bottom: 15px;
+}
+
+/* Input Fields */
+input, textarea {
+    background-color: #1e293b !important;
+    color: #ffffff !important;
+    border-radius: 10px !important;
+    border: 1px solid #334155 !important;
+}
+
+/* File Upload Area */
+section[data-testid="stFileUploader"] > div {
+    background-color: #1e293b !important;
+    border-radius: 12px !important;
+    border: 1px dashed #00f5d4 !important;
+}
+
+/* Buttons */
+/* Optimize Button - Eye Soothing */
+.stButton>button {
+    background: linear-gradient(90deg, #3b82f6, #14b8a6);
+    color: white;
+    border-radius: 12px;
+    border: none;
+    padding: 0.6em 1.2em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* Softer hover */
+.stButton>button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 12px rgba(59, 130, 246, 0.25);
+}
+
+/* Tabs */
+button[data-baseweb="tab"] {
+    background-color: #1e293b !important;
+    color: #d1d5db !important;
+    border-radius: 10px !important;
+    padding: 10px 18px !important;
+    margin-right: 6px;
+    font-weight: 500;
+    border: 1px solid #2d3748 !important;
+}
+
+button[data-baseweb="tab"][aria-selected="true"] {
+    background: linear-gradient(90deg, #0066ff, #00f5d4) !important;
+    color: white !important;
+    font-weight: 600;
+    box-shadow: 0px 0px 12px rgba(0, 245, 212, 0.6);
+}
+
+button[data-baseweb="tab"] span {
+    color: inherit !important;
+}
+
+/* Cards */
+div[data-testid="stVerticalBlock"] > div {
+    background-color: #111827;
+    border-radius: 14px;
+    padding: 15px;
+}
+                /* Input Focus Effect */
+input:focus, textarea:focus {
+    border: 1px solid #3b82f6 !important;
+    box-shadow: 0px 0px 8px rgba(59, 130, 246, 0.35) !important;
+    outline: none !important;
+}
+                /* Background Depth Effect */
+body {
+    background: radial-gradient(
+        circle at 20% 20%,
+        rgba(59, 130, 246, 0.08),
+        transparent 40%
+    ),
+    radial-gradient(
+        circle at 80% 80%,
+        rgba(20, 184, 166, 0.06),
+        transparent 40%
+    ),
+    #0f1117;
+                
+
+}
+
+</style>
+""", unsafe_allow_html=True)
+
     st.title("📄 Resume Refiner")
-    st.caption("AI-Powered Resume Intelligence Dashboard")
+    st.caption("Craft Your Career - Built by Swarupa")
 
     defaults = {
         "resume_analysis": {},
@@ -47,13 +190,11 @@ def main():
 
     # Sidebar Upload
     with st.sidebar:
-
+        st.image("./img/rrr.png", width=700)
         st.subheader("Upload Resume")
-
         uploaded_file = st.file_uploader("PDF only", type=["pdf"])
 
         if uploaded_file:
-
             st.session_state.temp_dir = tempfile.mkdtemp()
             path = f"{st.session_state.temp_dir}/{uploaded_file.name}"
 
@@ -106,12 +247,11 @@ def main():
             st.session_state.job_description
         )
 
-        tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(
-            ["📊 Dashboard", "🔎 Keyword Visual", "🧠 Analysis", "💡 Suggestions", "🧾 JSON", "✍ Rewritten Resume"]
+        tab1, tab2, tab3, tab4, tab5 = st.tabs(
+            ["📊 Dashboard", "🔎 Keyword Visual", "🧠 Analysis", "💡 Suggestions", "✍ Rewritten Resume"]
         )
 
         # ================= DASHBOARD =================
-
         with tab1:
 
             st.markdown("## 🎯 ATS Score Overview")
@@ -121,7 +261,7 @@ def main():
             st.markdown(
                 f"""
                 <div style="text-align:center;padding:30px;border-radius:15px;
-                background-color:#f0f2f6;">
+                background-color:#1e293b;">
                     <h1 style="font-size:60px;color:{color};">{score}%</h1>
                     <h3>Overall Match Score</h3>
                 </div>
@@ -139,7 +279,6 @@ def main():
             st.bar_chart(breakdown_df.set_index("Metric"))
 
         # ================= KEYWORD =================
-
         with tab2:
 
             keyword_data, missing_keywords = extract_keyword_data(
@@ -150,30 +289,24 @@ def main():
             df = pd.DataFrame(keyword_data)
 
             st.bar_chart(
-                df.set_index("keyword")[["job_count", "resume_count"]]
+                df.set_index("keyword")[["Required in Job", "Found in Resume"]]
             )
 
             if missing_keywords:
                 st.warning("Missing Keywords: " + ", ".join(missing_keywords[:10]))
 
         # ================= ANALYSIS =================
-
         with tab3:
             st.json(st.session_state.resume_analysis)
 
         # ================= SUGGESTIONS =================
-
         with tab4:
             st.json(st.session_state.optimization_suggestions)
 
-        # ================= JSON =================
-
-        with tab5:
-            st.json(st.session_state.last_result)
+       
 
         # ================= REWRITE =================
-
-        with tab6:
+        with tab5:
 
             if st.button("Generate Resume"):
 
@@ -199,13 +332,7 @@ def main():
                     )
                     st.markdown(highlighted, unsafe_allow_html=True)
 
-                with open(st.session_state.rewritten_pdf, "rb") as f:
-                    st.download_button(
-                        "⬇ Download ATS Resume PDF",
-                        f,
-                        file_name="ATS_Resume.pdf",
-                        mime="application/pdf"
-                    )
+                
 
 
 if __name__ == "__main__":

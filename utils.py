@@ -175,8 +175,8 @@ def extract_keyword_data(resume_analysis, job_description):
         presence = resume_text.count(word)
         keyword_data.append({
             "keyword": word,
-            "job_count": count,
-            "resume_count": presence
+            "Required in Job": count,
+            "Found in Resume": presence
         })
 
         if presence == 0:
