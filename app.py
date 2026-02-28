@@ -26,152 +26,94 @@ def main():
         layout="wide"
     )
 
-# ===== PREMIUM DARK UI POLISH =====
+    # ===== PREMIUM DARK UI =====
     st.markdown("""
-<style>
+    <style>
+    header {visibility: hidden;}
+    .block-container {padding-top: 1.5rem;}
 
-/* Remove Top White Bar */
-header {visibility: hidden;}
-.block-container {padding-top: 1.5rem;}
+    .stApp {
+        background: linear-gradient(135deg, #0b0f1c, #0f172a);
+        color: #e5e7eb;
+    }
 
-/* Main Background */
-.stApp {
-    background: linear-gradient(135deg, #0b0f1c, #0f172a);
-    color: #e5e7eb;
-}
+    section[data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #0b1a2a, #0f1117);
+    }
 
-/* Sidebar */
-section[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #0b1a2a, #0f1117);
-}
-                /* Upload Resume text color */
-section[data-testid="stSidebar"] h3 {
-     color: #94a3b8 !important;
-    font-weight: 600;
-}
+    h1 {
+        font-size: 42px !important;
+        font-weight: 700 !important;
+        background: linear-gradient(90deg, #0066ff, #00f5d4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 
-/* ===== MAIN TITLE (Resume Refiner) ===== */
-h1 {
-    font-size: 42px !important;
-    font-weight: 700 !important;
-    background: linear-gradient(90deg, #0066ff, #00f5d4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: 1px;
-}
+    div[data-testid="stTextInput"],
+    div[data-testid="stTextArea"],
+    div[data-testid="stFileUploader"] {
+        background-color: #111827 !important;
+        padding: 15px !important;
+        border-radius: 14px !important;
+        border: 1px solid #1f2937 !important;
+        margin-bottom: 15px;
+    }
 
-/* Sub text */
-.stCaption {
-    color: #9ca3af !important;
-}
+    input, textarea {
+        background-color: #1e293b !important;
+        color: #ffffff !important;
+        border-radius: 10px !important;
+        border: 1px solid #334155 !important;
+    }
 
-/* Section Labels (Job Title, Job Description etc.) */
-label {
-    color: #cbd5e1 !important;
-    font-weight: 500;
-}
+    .stButton>button {
+        background: linear-gradient(90deg, #3b82f6, #14b8a6);
+        color: white;
+        border-radius: 12px;
+        border: none;
+        padding: 0.6em 1.2em;
+        font-weight: 600;
+    }
 
-/* Input Containers Darker */
-div[data-testid="stTextInput"],
-div[data-testid="stTextArea"],
-div[data-testid="stFileUploader"] {
-    background-color: #111827 !important;
-    padding: 15px !important;
-    border-radius: 14px !important;
-    border: 1px solid #1f2937 !important;
-    margin-bottom: 15px;
-}
+    .stButton>button:disabled {
+        background: #334155 !important;
+        color: #94a3b8 !important;
+    }
+                
+                /* ===== CUSTOM TABS - MATCH OPTIMIZE BUTTON ===== */
 
-/* Input Fields */
-input, textarea {
-    background-color: #1e293b !important;
-    color: #ffffff !important;
-    border-radius: 10px !important;
-    border: 1px solid #334155 !important;
-}
-
-/* File Upload Area */
-section[data-testid="stFileUploader"] > div {
-    background-color: #1e293b !important;
+button[data-baseweb="tab"] {
+    background: #1e293b !important;
+    color: #d1d5db !important;
     border-radius: 12px !important;
-    border: 1px dashed #00f5d4 !important;
+    padding: 10px 18px !important;
+    margin-right: 6px !important;
+    font-weight: 500 !important;
+    border: 1px solid #2d3748 !important;
+    transition: all 0.3s ease !important;
 }
 
-/* Buttons */
-/* Optimize Button - Eye Soothing */
-.stButton>button {
-    background: linear-gradient(90deg, #3b82f6, #14b8a6);
-    color: white;
-    border-radius: 12px;
-    border: none;
-    padding: 0.6em 1.2em;
-    font-weight: 600;
-    transition: all 0.3s ease;
+/* Active Tab - SAME AS OPTIMIZE BUTTON */
+button[data-baseweb="tab"][aria-selected="true"] {
+    background: linear-gradient(90deg, #3b82f6, #14b8a6) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    box-shadow: 0px 4px 12px rgba(59, 130, 246, 0.35) !important;
+    border: none !important;
 }
 
-/* Softer hover */
-.stButton>button:hover {
+/* Hover Effect */
+button[data-baseweb="tab"]:hover {
     transform: translateY(-2px);
     box-shadow: 0px 4px 12px rgba(59, 130, 246, 0.25);
 }
-
-/* Tabs */
-button[data-baseweb="tab"] {
-    background-color: #1e293b !important;
-    color: #d1d5db !important;
-    border-radius: 10px !important;
-    padding: 10px 18px !important;
-    margin-right: 6px;
-    font-weight: 500;
-    border: 1px solid #2d3748 !important;
-}
-
-button[data-baseweb="tab"][aria-selected="true"] {
-    background: linear-gradient(90deg, #0066ff, #00f5d4) !important;
-    color: white !important;
-    font-weight: 600;
-    box-shadow: 0px 0px 12px rgba(0, 245, 212, 0.6);
-}
-
-button[data-baseweb="tab"] span {
-    color: inherit !important;
-}
-
-/* Cards */
-div[data-testid="stVerticalBlock"] > div {
-    background-color: #111827;
-    border-radius: 14px;
-    padding: 15px;
-}
-                /* Input Focus Effect */
-input:focus, textarea:focus {
-    border: 1px solid #3b82f6 !important;
-    box-shadow: 0px 0px 8px rgba(59, 130, 246, 0.35) !important;
-    outline: none !important;
-}
-                /* Background Depth Effect */
-body {
-    background: radial-gradient(
-        circle at 20% 20%,
-        rgba(59, 130, 246, 0.08),
-        transparent 40%
-    ),
-    radial-gradient(
-        circle at 80% 80%,
-        rgba(20, 184, 166, 0.06),
-        transparent 40%
-    ),
-    #0f1117;
-                
-
-}
-
-</style>
-""", unsafe_allow_html=True)
+    </style>
+    """, unsafe_allow_html=True)
 
     st.title("📄 Resume Refiner")
     st.caption("Craft Your Career - Built by Swarupa")
 
+    # ===== SESSION STATE DEFAULTS =====
     defaults = {
         "resume_analysis": {},
         "optimization_suggestions": {},
@@ -188,10 +130,15 @@ body {
         if key not in st.session_state:
             st.session_state[key] = value
 
-    # Sidebar Upload
+    # ===== SIDEBAR =====
     with st.sidebar:
-        st.image("./img/rrr.png", width=700)
-        st.subheader("Upload Resume")
+        st.image("img/rrr.png", width=700)
+
+        st.markdown(
+            '<h3 style="color:#94a3b8;">Upload Resume <span style="color:#ef4444;">*</span></h3>',
+            unsafe_allow_html=True
+        )
+
         uploaded_file = st.file_uploader("PDF only", type=["pdf"])
 
         if uploaded_file:
@@ -212,11 +159,44 @@ body {
             st.markdown(display_pdf_preview(uploaded_file), unsafe_allow_html=True)
             st.success("Resume uploaded successfully")
 
-    job_title = st.text_input("Job Title")
-    job_description = st.text_area("Job Description", height=200)
+    # ===== MAIN INPUTS =====
+    st.markdown("### Job Details")
 
-    if st.button("🚀 Optimize Resume"):
+    # Job Title with red *
+    st.markdown(
+        '<label style="color:#cbd5e1;font-weight:500;">Job Title <span style="color:#ef4444;">*</span></label>',
+        unsafe_allow_html=True
+    )
+    job_title = st.text_input("", key="job_title_input")
 
+    # Job Description with red *
+    st.markdown(
+        '<label style="color:#cbd5e1;font-weight:500;">Job Description <span style="color:#ef4444;">*</span></label>',
+        unsafe_allow_html=True
+    )
+    job_description = st.text_area("", height=200, key="job_desc_input")
+
+    # ===== DISABLE BUTTON LOGIC =====
+    optimize_disabled = (
+        not job_title.strip()
+        or not job_description.strip()
+        or not st.session_state.documents
+    )
+
+    if st.button("🚀 Optimize Resume", disabled=optimize_disabled):
+
+        if not st.session_state.documents:
+            st.error("⚠ Please upload your resume.")
+            return
+
+        if not job_title.strip():
+            st.error("⚠ Job Title is required.")
+            return
+
+        if not job_description.strip():
+            st.error("⚠ Job Description is required.")
+            return
+ 
         graph = create_resume_graph()
 
         state = {
@@ -226,7 +206,8 @@ body {
             "optimization_query": OPTIMIZATION_PROMPTS["ATS Keyword Optimizer"],
         }
 
-        result = graph.invoke(state)
+        with st.spinner("Optimizing your resume..."):
+            result = graph.invoke(state)
 
         st.session_state.last_result = result
         st.session_state.resume_analysis = result.get("resume_analysis", {})
@@ -235,6 +216,7 @@ body {
 
         st.success("Optimization Completed ✅")
 
+    # ===== RESULTS SECTION =====
     if st.session_state.resume_analysis:
 
         score = calculate_ats_score(
@@ -251,25 +233,19 @@ body {
             ["📊 Dashboard", "🔎 Keyword Visual", "🧠 Analysis", "💡 Suggestions", "✍ Rewritten Resume"]
         )
 
-        # ================= DASHBOARD =================
         with tab1:
-
             st.markdown("## 🎯 ATS Score Overview")
-
             color = "green" if score > 70 else "orange" if score > 40 else "red"
 
             st.markdown(
                 f"""
-                <div style="text-align:center;padding:30px;border-radius:15px;
-                background-color:#1e293b;">
+                <div style="text-align:center;padding:30px;border-radius:15px;background-color:#1e293b;">
                     <h1 style="font-size:60px;color:{color};">{score}%</h1>
                     <h3>Overall Match Score</h3>
                 </div>
                 """,
                 unsafe_allow_html=True
             )
-
-            st.markdown("### 📊 Score Breakdown")
 
             breakdown_df = pd.DataFrame({
                 "Metric": ["Semantic Match", "Keyword Coverage", "Skill Match"],
@@ -278,9 +254,7 @@ body {
 
             st.bar_chart(breakdown_df.set_index("Metric"))
 
-        # ================= KEYWORD =================
         with tab2:
-
             keyword_data, missing_keywords = extract_keyword_data(
                 st.session_state.resume_analysis,
                 st.session_state.job_description
@@ -295,17 +269,12 @@ body {
             if missing_keywords:
                 st.warning("Missing Keywords: " + ", ".join(missing_keywords[:10]))
 
-        # ================= ANALYSIS =================
         with tab3:
             st.json(st.session_state.resume_analysis)
 
-        # ================= SUGGESTIONS =================
         with tab4:
             st.json(st.session_state.optimization_suggestions)
 
-       
-
-        # ================= REWRITE =================
         with tab5:
 
             if st.button("Generate Resume"):
@@ -331,8 +300,6 @@ body {
                         st.session_state.rewritten_resume
                     )
                     st.markdown(highlighted, unsafe_allow_html=True)
-
-                
 
 
 if __name__ == "__main__":
